@@ -28,7 +28,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/assets/styles/weather-icons.min.css"
+              }
             ],
             "scripts": []
           },

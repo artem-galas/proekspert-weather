@@ -48,3 +48,19 @@ export interface Coord {
   lon: number;
   lat: number;
 }
+
+export interface ForecastDto {
+  city: {
+    coord: Coord;
+    name: string;
+  };
+  list: Array<Forecast>;
+}
+
+export interface Forecast {
+  dt: number;
+  dt_text: string;
+  main: Main;
+  weather: Array<Weather>;
+  wind: Wind;
+}

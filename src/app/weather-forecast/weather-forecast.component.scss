@@ -1,0 +1,67 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  i {
+    font-size: 3rem
+  }
+}
+
+.weather-today {
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font-size: 2.5rem
+  }
+
+  .sub-title {
+    font-size: 2rem;
+  }
+
+  .weather {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0;
+
+    .now {
+      font-size: 5rem;
+      color: #fd736c;
+      margin-right: 1.2rem;
+    }
+
+    .other-time-list {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.5rem;
+      .other-time-item {
+        display: flex;
+        color: #fd736c;
+      }
+    }
+  }
+}
+
+.weather-week {
+  display: flex;
+  justify-content: space-between;
+
+  .day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 115px;
+
+    i {
+      font-size: 2.5rem;
+    }
+  }
+}
