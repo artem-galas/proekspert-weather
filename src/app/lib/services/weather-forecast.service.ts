@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
-import { ForecastDto, OpenWeatherDto, Forecast } from '~/lib/dto';
+import { OpenWeatherDto, DailyForecastDto, DailyForecastItem } from '~/lib/dto';
 
 import { WeatherForecastConfig, WeatherForecastConfigService } from './weather-forecast.config.service';
 
@@ -29,6 +29,22 @@ const buildParams = (value: GetCurrentWeatherParams, apiToken: string) => {
   return params;
 };
 
+export class DailyForecast {
+  current: DailyForecastItem;
+  nextDays: Array<DailyForecastItem>;
+
+  constructor(value: DailyForecastDto['list']) {
+    this.nextDays = [];
+    value.map(item => {
+      if (new Date(item.dt * 1000).getUTCDate() === new Date().getUTCDate()) {
+        this.current = item;
+      } else {
+        this.nextDays.push(item);
+      }
+    });
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -47,37 +63,12 @@ export class WeatherForecastService {
       );
   }
 
-  getWeatherFiveDays(value: GetCurrentWeatherParams): Observable<Forecast[]> {
+  getDailyForecast(value: GetCurrentWeatherParams): Observable<DailyForecast> {
     const params = buildParams(value, this.config.apiToken);
 
-    return this.http.get<ForecastDto>(`${this.apiUrl}/forecast`, {params})
+    return this.http.get<DailyForecastDto>(`${this.apiUrl}/forecast/daily`, {params})
       .pipe(
-        map(response => response.list.filter(item => new Date(item.dt * 1000).getUTCHours() === 12)),
-        catchError((httpErrorResponse: HttpErrorResponse) => throwError(httpErrorResponse.error))
-      );
-  }
-
-  getWeatherFiveDaysT(value: GetCurrentWeatherParams): Observable<any> {
-    const params = buildParams(value, this.config.apiToken);
-
-    return this.http.get<ForecastDto>(`${this.apiUrl}/forecast/daily`, {params})
-      .pipe(
-        map(response => {
-          const data = {
-            currentDayWeather: undefined,
-            nextDays: []
-          };
-
-          response.list.map(item => {
-            if (new Date(item.dt * 1000).getUTCDate() === new Date().getUTCDate()) {
-              data.currentDayWeather = item;
-            } else {
-              data.nextDays.push(item);
-            }
-          });
-
-          return data;
-        }),
+        map(response => new DailyForecast(response.list)),
         catchError((httpErrorResponse: HttpErrorResponse) => throwError(httpErrorResponse.error))
       );
   }

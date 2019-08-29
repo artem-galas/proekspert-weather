@@ -1,41 +1,48 @@
-<div class="header">
-  <i class="material-icons pointer">arrow_back</i>
-  <span class="title">{{ cityName }}</span>
-</div>
-
-<div class="weather-today" *ngIf="currentWeather$ | async as currentWeather">
-  <div class="title">{{ currentWeather.dt * 1000 | date: 'fullDate' }}</div>
-  <div class="sub-title">{{ currentWeather.weather[0].description | titlecase }}</div>
-  <div class="weather">
-    <div class="now">
-      <span>{{ currentWeather.main.temp | temperature }}</span>
-      <i [class]="'wi ' + (currentWeather.weather[0].main | weatherIcon)"></i>
-    </div>
-    <div class="other-time-list">
-      <div class="other-time-item">
-        <label>Morning</label>
-        <span>5</span>
+<ng-container *ngIf="(forecast$ | async) as forecast; else loading">
+  <div class="header">
+    <i class="material-icons pointer">arrow_back</i>
+    <span class="title">{{ cityName }}</span>
+  </div>
+  <div class="weather-today" *ngIf="forecast.current as currentWeather">
+    <div class="title">{{ currentWeather.dt * 1000 | date: 'fullDate' }}</div>
+    <div class="sub-title">{{ currentWeather.weather[0].description | titlecase }}</div>
+    <div class="weather">
+      <div class="now">
+        <span>{{ currentWeather.temp.day | temperature }}</span>
+        <i [class]="'wi ' + (currentWeather.weather[0].main | weatherIcon)"></i>
       </div>
-      <div class="other-time-item">
-        <label>Day</label>
-        <span>5</span>
-      </div>
-      <div class="other-time-item">
-        <label>Evening</label>
-        <span>5</span>
-      </div>
-      <div class="other-time-item">
-        <label>Night</label>
-        <span>5</span>
+      <div class="other-time-list">
+        <div class="other-time-item">
+          <label>Morning</label>
+          <span>{{ currentWeather.temp.morn | temperature }}</span>
+        </div>
+        <div class="other-time-item">
+          <label>Day</label>
+          <span>{{ currentWeather.temp.day | temperature }}</span>
+        </div>
+        <div class="other-time-item">
+          <label>Evening</label>
+          <span>{{ currentWeather.temp.eve | temperature }}</span>
+        </div>
+        <div class="other-time-item">
+          <label>Night</label>
+          <span>{{ currentWeather.temp.night | temperature }}</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="weather-week">
-  <div class="day" *ngFor="let day of forecast$ | async">
-    <label>{{ day.dt * 1000 | date: 'EEEE' }}</label>
-    <i [class]="'wi ' + (day.weather[0].main | weatherIcon)"></i>
-    <span>{{ day.main.temp | temperature }}</span>
+  <div class="weather-week">
+    <div class="day" *ngFor="let day of forecast.nextDays">
+      <label>{{ day.dt * 1000 | date: 'EEEE' }}</label>
+      <i [class]="'wi ' + (day.weather[0].main | weatherIcon)"></i>
+      <span>{{ day.temp.day | temperature }}</span>
+    </div>
   </div>
-</div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="loading">
+    <i class="material-icons">loop</i>
+  </div>
+</ng-template>

@@ -8,8 +8,9 @@
   background: linear-gradient(to right, #fd736c 0%, #ff8b68 100%);
 }
 
-
 .card {
+  display: flex;
+  justify-content: stretch;
   width: 80%;
   min-height: 60%;
   background-color: white;

@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { WeatherForecastService } from '~/lib/services';
+
 import { Observable } from 'rxjs';
-import { Forecast, OpenWeatherDto } from '~/lib/dto';
+
+import { DailyForecast, WeatherForecastService } from '~/lib/services';
 
 @Component({
   selector: 'prw-weather-forecast',
@@ -11,17 +12,11 @@ import { Forecast, OpenWeatherDto } from '~/lib/dto';
 })
 export class WeatherForecastComponent implements OnInit {
   cityName = 'Tallinn';
-
-  currentWeather$: Observable<OpenWeatherDto>;
-  forecast$: Observable<Forecast[]>;
+  forecast$: Observable<DailyForecast>;
   constructor(private readonly weatherForecastService: WeatherForecastService) { }
 
   ngOnInit() {
-    this.currentWeather$ = this.weatherForecastService.getCurrentWeather(this.cityName);
-    this.forecast$ = this.weatherForecastService.getWeatherFiveDays(this.cityName);
-
-    this.weatherForecastService.getWeatherFiveDaysT(this.cityName)
-    .subscribe(res => console.log(res));
+    this.forecast$ = this.weatherForecastService.getDailyForecast(this.cityName);
   }
 
 }

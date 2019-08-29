@@ -49,18 +49,29 @@ export interface Coord {
   lat: number;
 }
 
-export interface ForecastDto {
+export interface DailyForecastDto {
   city: {
     coord: Coord;
     name: string;
   };
-  list: Array<Forecast>;
+  list: Array<DailyForecastItem>;
 }
 
-export interface Forecast {
+export interface DailyForecastItem {
   dt: number;
-  dt_text: string;
-  main: Main;
+  temp: {
+    day: number;
+    min: number;
+    max: number;
+    night: number;
+    eve: number;
+    morn: number;
+  };
+  pressure: number;
+  humidity: number;
   weather: Array<Weather>;
-  wind: Wind;
+  speed: number;
+  deg: number;
+  clouds: number;
+  rain: number
 }
