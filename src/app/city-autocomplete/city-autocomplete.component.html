@@ -1,1 +1,12 @@
-<p>city-autocomplete works!</p>
+<input class="input is-medium"
+         placeholder="City"
+         [formControl]="control"
+         [prwAutocomplete]="autocomplete" />
+
+<prw-autocomplete #autocomplete="prwAutocomplete">
+  <ng-template prwAutocompleteContent>
+    <prw-option *ngFor="let option of options" [value]="option.label">
+      {{ option.label }}
+    </prw-option>
+  </ng-template>
+</prw-autocomplete>

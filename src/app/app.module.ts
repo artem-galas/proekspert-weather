@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import {OverlayModule} from '@angular/cdk/overlay';
 
 import { WeatherForecastConfigService } from '~/lib/services';
 
@@ -13,7 +14,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     HttpClientModule,
     WeatherForecastModule,
-    CityAutocompleteModule
+    CityAutocompleteModule,
+    OverlayModule
   ],
   declarations: [
     AppComponent,

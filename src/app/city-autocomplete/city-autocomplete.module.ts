@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { AutocompleteModule } from '~/lib/autocomplete/autocomplete.module';
+
 import { CityAutocompleteComponent } from './city-autocomplete.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AutocompleteModule
   ],
   declarations: [
     CityAutocompleteComponent
