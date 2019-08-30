@@ -2,8 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ContentChildren,
-  OnInit,
+  ContentChildren, EventEmitter, Input,
+  OnInit, Output,
   QueryList,
   TemplateRef,
   ViewChild
@@ -33,6 +33,12 @@ export class AutocompleteComponent implements OnInit {
 
   @ContentChildren(OptionComponent) options: QueryList<OptionComponent>;
 
+  /** Function that maps an option's control value to its display value in the trigger. */
+  @Input() displayWith: ((value: any) => string) | null = null;
+
+  @Output()
+  optionSelected = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
@@ -46,6 +52,10 @@ export class AutocompleteComponent implements OnInit {
         return merge(...clicks$);
       })
     );
+  }
+
+  _emitSelectEvent(option: string): void {
+    this.optionSelected.emit(option);
   }
 
 }

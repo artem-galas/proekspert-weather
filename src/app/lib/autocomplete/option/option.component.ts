@@ -14,7 +14,7 @@ import { mapTo } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionComponent implements OnInit {
-  @Input() value: string;
+  @Input() value: any;
   click$: Observable<string>;
 
   get element() {

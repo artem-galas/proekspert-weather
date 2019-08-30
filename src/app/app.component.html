@@ -1,4 +1,11 @@
 <div class="card">
-  <prw-city-autocomplete></prw-city-autocomplete>
-<!--  <prw-weather-forecast></prw-weather-forecast>-->
+  <ng-container *ngIf="!selectedCity; else weather">
+    <prw-city-autocomplete (selectedCity)="selectedCity = $event"></prw-city-autocomplete>
+  </ng-container>
+
+  <ng-template #weather>
+    <prw-weather-forecast [city]="selectedCity"
+                          (back)="selectedCity = undefined">
+    </prw-weather-forecast>
+  </ng-template>
 </div>

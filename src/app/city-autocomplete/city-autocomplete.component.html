@@ -1,12 +1,17 @@
-<input class="input is-medium"
+<div class="field-control">
+  <input type="text"
          placeholder="City"
          [formControl]="control"
          [prwAutocomplete]="autocomplete" />
-
-<prw-autocomplete #autocomplete="prwAutocomplete">
+  <span class="separator-text">or</span>
+  <span>use my <span class="styled-text" (click)="getUserLocation()">current location</span></span>
+</div>
+<prw-autocomplete #autocomplete="prwAutocomplete"
+                  (optionSelected)="selectCity($event)"
+                  [displayWith]="displayWithFn">
   <ng-template prwAutocompleteContent>
-    <prw-option *ngFor="let option of options" [value]="option.label">
-      {{ option.label }}
+    <prw-option *ngFor="let option of (cityList$ | async)" [value]="option">
+      {{ option.name }}, {{ option.country }}
     </prw-option>
   </ng-template>
 </prw-autocomplete>

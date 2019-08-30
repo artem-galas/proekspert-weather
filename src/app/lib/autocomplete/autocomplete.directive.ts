@@ -4,23 +4,9 @@ import { ConnectionPositionPair, Overlay, OverlayRef } from '@angular/cdk/overla
 import { TemplatePortal } from '@angular/cdk/portal';
 
 import { fromEvent, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 import { AutocompleteComponent } from './autocomplete.component';
-
-export function overlayClickOutside( overlayRef: OverlayRef, origin: HTMLElement ) {
-  return fromEvent<MouseEvent>(document, 'click')
-    .pipe(
-      filter(event => {
-        const clickTarget = event.target as HTMLElement;
-        const notOrigin = clickTarget !== origin;
-        const notOverlay = !!overlayRef && (overlayRef.overlayElement.contains(clickTarget) === false);
-
-        return notOrigin && notOverlay;
-      }),
-      takeUntil(overlayRef.detachments())
-    );
-}
 
 @Directive({
   selector: '[prwAutocomplete]'
@@ -54,10 +40,7 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
 
         this.prwAutocomplete.optionsClick()
           .pipe(takeUntil(this.overlayRef.detachments()))
-          .subscribe(( value: string ) => {
-            this.control.setValue(value);
-            this.close();
-          });
+          .subscribe((value: any) => this.setValueAndClose(value));
       });
   }
 
@@ -72,19 +55,19 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
       maxHeight: 40 * 3,
       backdropClass: '',
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
-      positionStrategy: this.getOverlayPosition()
+      positionStrategy: this.getOverlayPosition(),
+      hasBackdrop: true
     });
 
     const template = new TemplatePortal(this.prwAutocomplete.rootTemplate, this.vcr);
     this.overlayRef.attach(template);
 
-    overlayClickOutside(this.overlayRef, this.origin)
+    this.overlayRef.backdropClick()
       .subscribe(() => this.close());
   }
 
   private close() {
-    this.overlayRef.detach();
-    this.overlayRef = null;
+    this.overlayRef.dispose();
   }
 
   private getOverlayPosition() {
@@ -101,5 +84,14 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
       .withPositions(positions)
       .withFlexibleDimensions(false)
       .withPush(false);
+  }
+
+  private setValueAndClose(value: any) {
+    const toDisplay = this.prwAutocomplete && this.prwAutocomplete.displayWith ?
+      this.prwAutocomplete.displayWith(value) :
+      value;
+    this.control.setValue(toDisplay);
+    this.prwAutocomplete._emitSelectEvent(value);
+    this.close();
   }
 }

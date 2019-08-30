@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -11,12 +11,17 @@ import { DailyForecast, WeatherForecastService } from '~/lib/services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherForecastComponent implements OnInit {
-  cityName = 'Tallinn';
+  @Input()
+  city: number | string;
+
+  @Output()
+  back = new EventEmitter<void>();
+
   forecast$: Observable<DailyForecast>;
   constructor(private readonly weatherForecastService: WeatherForecastService) { }
 
   ngOnInit() {
-    this.forecast$ = this.weatherForecastService.getDailyForecast(this.cityName);
+    this.forecast$ = this.weatherForecastService.getDailyForecast(this.city);
   }
 
 }

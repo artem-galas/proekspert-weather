@@ -1,7 +1,7 @@
 <ng-container *ngIf="(forecast$ | async) as forecast; else loading">
   <div class="header">
-    <i class="material-icons pointer">arrow_back</i>
-    <span class="title">{{ cityName }}</span>
+    <i class="material-icons pointer" (click)="back.emit()">arrow_back</i>
+    <span class="title">{{ forecast.cityName }}</span>
   </div>
   <div class="weather-today" *ngIf="forecast.current as currentWeather">
     <div class="title">{{ currentWeather.dt * 1000 | date: 'fullDate' }}</div>

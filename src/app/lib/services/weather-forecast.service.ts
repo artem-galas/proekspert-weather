@@ -11,7 +11,7 @@ import { WeatherForecastConfig, WeatherForecastConfigService } from './weather-f
 type ID = number;
 type cityName = string;
 
-type GetCurrentWeatherParams = ID | cityName;
+type GetCurrentWeatherParams = ID | cityName | Coordinates;
 
 const buildParams = (value: GetCurrentWeatherParams, apiToken: string) => {
   let params = new HttpParams();
@@ -22,20 +22,25 @@ const buildParams = (value: GetCurrentWeatherParams, apiToken: string) => {
     params = params.append('q', value);
   } else if (typeof value === 'number') {
     params = params.append('id', value.toString());
+  } else if (value.latitude && value.longitude) {
+    params = params.append('lat', value.latitude.toString());
+    params = params.append('lon', value.longitude.toString());
   } else {
-    throw TypeError('Invalid arguments types. It can be string or number');
+    throw TypeError('Invalid arguments types. It can be string, number or Coordinates');
   }
 
   return params;
 };
 
 export class DailyForecast {
+  cityName: string;
   current: DailyForecastItem;
   nextDays: Array<DailyForecastItem>;
 
-  constructor(value: DailyForecastDto['list']) {
+  constructor(value: DailyForecastDto) {
+    this.cityName = value.city.name;
     this.nextDays = [];
-    value.map(item => {
+    value.list.map(item => {
       if (new Date(item.dt * 1000).getUTCDate() === new Date().getUTCDate()) {
         this.current = item;
       } else {
@@ -68,7 +73,7 @@ export class WeatherForecastService {
 
     return this.http.get<DailyForecastDto>(`${this.apiUrl}/forecast/daily`, {params})
       .pipe(
-        map(response => new DailyForecast(response.list)),
+        map(response => new DailyForecast(response)),
         catchError((httpErrorResponse: HttpErrorResponse) => throwError(httpErrorResponse.error))
       );
   }
