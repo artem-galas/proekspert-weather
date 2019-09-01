@@ -52,7 +52,7 @@ export class DailyForecast {
   providedIn: 'root'
 })
 export class WeatherForecastService {
-  private readonly apiUrl = '//api.openweathermap.org/data/2.5/';
+  private readonly apiUrl = '//api.openweathermap.org/data/2.5';
 
   constructor(private readonly http: HttpClient,
               @Inject(WeatherForecastConfigService) private readonly config: WeatherForecastConfig) { }

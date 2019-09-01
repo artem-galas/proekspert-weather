@@ -4,8 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --live-reload=false",
-    "build": "ng build",
-    "test": "ng test",
+    "build": "ng build --prod",
+    "deploy": "ng deploy --repo=https://github.com/artem-galas/proekspert-weather.git --name=\"artem-galas\" --email=artem.galas@gmail.com",
+    "test": "ng test --watch false --browsers ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -20,6 +21,7 @@
     "@angular/platform-browser": "~8.2.3",
     "@angular/platform-browser-dynamic": "~8.2.3",
     "@angular/router": "~8.2.3",
+    "angular-cli-ghpages": "^0.6.0",
     "pako": "^1.0.10",
     "rxjs": "~6.5.0",
     "tslib": "^1.10.0",

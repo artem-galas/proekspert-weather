@@ -73,5 +73,5 @@ export interface DailyForecastItem {
   speed: number;
   deg: number;
   clouds: number;
-  rain: number;
+  rain?: number;
 }

@@ -49,8 +49,6 @@ export class CityAutocompleteComponent implements OnInit {
   getUserLocation() {
     navigator.geolocation.getCurrentPosition(
       position => {
-        console.log(position);
-
         this.weatherService.getCurrentWeather(position.coords)
           .subscribe(res => {
             const city = {

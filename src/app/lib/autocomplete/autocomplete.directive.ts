@@ -94,7 +94,7 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keydown', ['$event'])
-  private handleKeydown(event: KeyboardEvent) {
+  handleKeydown(event: KeyboardEvent) {
     const keyCode = event.keyCode;
 
     if (keyCode === ESCAPE) {
