@@ -17,7 +17,7 @@
     <div class="weather">
       <div class="now">
         <span>{{ weather.current.main.temp | temperature : units }}</span>
-        <i [class]="(weather.current.weather[0].main | weatherIcon)"></i>
+        <i [class]="(weather.current.weather[0].main | weatherIcon: 'dependsOnTime')"></i>
       </div>
       <div class="today-forecast">
         <div class="forecast-item">
