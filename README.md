@@ -44,3 +44,4 @@ Common Components:
 - [angular-cli-ghpages](https://github.com/angular-schule/angular-cli-ghpages) - deploy application to gh-pages
 - [AngularPWA](https://www.npmjs.com/package/@angular/pwa) - building PWA
 - [WeatherIcons](https://erikflowers.github.io/weather-icons/)
+- [pako](https://github.com/nodeca/pako) - unzip city.json.gz

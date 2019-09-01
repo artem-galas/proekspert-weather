@@ -9,6 +9,9 @@
   i {
     font-size: 3rem
   }
+  .title {
+    flex: 1 1 auto;
+  }
 }
 
 .weather-today {
@@ -16,7 +19,7 @@
   flex-direction: column;
 
   .title {
-    font-size: 2.5rem
+    font-size: 2.5rem;
   }
 
   .sub-title {
@@ -62,6 +65,16 @@
       text-overflow: ellipsis;
       overflow: hidden;
     }
+  }
+}
+
+.temperature-metric {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+
+  label.switch {
+    margin: 0 5px;
   }
 }
 

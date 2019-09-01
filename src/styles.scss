@@ -1,4 +1,8 @@
 @import "~@angular/cdk/overlay-prebuilt.css";
+@import "assets/scss/switch";
+@import "assets/scss/loading";
+@import "assets/scss/field-control";
+@import "assets/scss/card";
 
 * {
   box-sizing: border-box;
@@ -17,41 +21,4 @@ body {
 
 .pointer {
   cursor: pointer;
-}
-
-.loading {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  i {
-    font-size: 40px;
-    animation: loading 1.2s linear infinite;
-  }
-}
-
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.field-control {
-  position: relative;
-
-  input[type="text"] {
-    color: #333;
-    width: 100%;
-    border: 0;
-    padding: 7px 0;
-    border-bottom: 1px solid #ccc;
-    font-size: inherit;
-  }
-
-  input:focus {
-    outline: none;
-  }
 }

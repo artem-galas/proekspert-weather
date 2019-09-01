@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { TemperaturePipeModule, WeatherIconModule } from '~/lib/pipes';
 
 import { WeatherForecastComponent } from './weather-forecast.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
     TemperaturePipeModule,
-    WeatherIconModule
+    WeatherIconModule,
+    ReactiveFormsModule
   ],
   declarations: [
     WeatherForecastComponent

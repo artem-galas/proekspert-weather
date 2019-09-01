@@ -75,3 +75,5 @@ export interface DailyForecastItem {
   clouds: number;
   rain?: number;
 }
+
+export type TemperatureUnits = 'metric' | 'imperial';

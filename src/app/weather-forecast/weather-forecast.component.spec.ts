@@ -8,6 +8,7 @@ import { DailyForecast, WeatherForecastService } from '~/lib/services';
 import {TemperaturePipeModule, WeatherIconModule} from '~/lib/pipes';
 
 import { WeatherForecastComponent } from './weather-forecast.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 const dailyForecastMock = new DailyForecast({
   city: {
@@ -58,6 +59,7 @@ describe('WeatherForecastComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
+        ReactiveFormsModule,
         WeatherIconModule,
         TemperaturePipeModule
       ],

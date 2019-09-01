@@ -2,31 +2,39 @@
   <div class="header">
     <i class="material-icons pointer" (click)="back.emit()">arrow_back</i>
     <span class="title">{{ weather.current.name }}</span>
+    <div class="temperature-metric">
+      °C
+      <label class="switch">
+        <input type="checkbox" [formControl]="tempUnitControl">
+        <span class="slider round"></span>
+      </label>
+      °F
+    </div>
   </div>
   <div class="weather-today">
     <div class="title">{{ weather.current.dt * 1000 | date: 'fullDate' }}</div>
     <div class="sub-title">{{ weather.current.weather[0].description | titlecase }}</div>
     <div class="weather">
       <div class="now">
-        <span>{{ weather.current.main.temp | temperature }}</span>
+        <span>{{ weather.current.main.temp | temperature : units }}</span>
         <i [class]="(weather.current.weather[0].main | weatherIcon)"></i>
       </div>
       <div class="today-forecast">
         <div class="forecast-item">
           <label>Morning</label>
-          <span>{{ weather.forecast.today.temp.morn | temperature }}</span>
+          <span>{{ weather.forecast.today.temp.morn | temperature : units }}</span>
         </div>
         <div class="forecast-item">
           <label>Day</label>
-          <span>{{ weather.forecast.today.temp.day | temperature }}</span>
+          <span>{{ weather.forecast.today.temp.day | temperature : units }}</span>
         </div>
         <div class="forecast-item">
           <label>Evening</label>
-          <span>{{ weather.forecast.today.temp.eve | temperature }}</span>
+          <span>{{ weather.forecast.today.temp.eve | temperature : units }}</span>
         </div>
         <div class="forecast-item">
           <label>Night</label>
-          <span>{{ weather.forecast.today.temp.night | temperature }}</span>
+          <span>{{ weather.forecast.today.temp.night | temperature : units }}</span>
         </div>
       </div>
     </div>
@@ -36,7 +44,7 @@
     <div class="day" *ngFor="let day of weather.forecast.nextDays">
       <label>{{ day.dt * 1000 | date: 'EEEE' }}</label>
       <i [class]="(day.weather[0].main | weatherIcon)"></i>
-      <span>{{ day.temp.day | temperature }}</span>
+      <span>{{ day.temp.day | temperature : units }}</span>
     </div>
   </div>
 </ng-container>

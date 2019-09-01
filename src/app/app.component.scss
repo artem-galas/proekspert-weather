@@ -7,22 +7,3 @@
   background-color: #fd736c;
   background: linear-gradient(to right, #fd736c 0%, #ff8b68 100%);
 }
-
-.card {
-  display: flex;
-  justify-content: stretch;
-  width: 690px;
-  min-height: 320px;
-  background-color: white;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-  padding: 2rem;
-}
-
-@media (max-width: 576px) {
-  .card {
-    width: 100vw;
-    height: 100vh;
-    padding: 1rem;
-    box-shadow: none;
-  }
-}

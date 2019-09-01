@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
-import { OpenWeatherDto, DailyForecastDto, DailyForecastItem } from '~/lib/dto';
+import {OpenWeatherDto, DailyForecastDto, DailyForecastItem, TemperatureUnits} from '~/lib/dto';
 
 import { WeatherForecastConfig, WeatherForecastConfigService } from './weather-forecast.config.service';
 
@@ -13,10 +13,10 @@ type cityName = string;
 
 type GetCurrentWeatherParams = ID | cityName | Coordinates;
 
-const buildParams = (value: GetCurrentWeatherParams, apiToken: string) => {
+const buildParams = (value: GetCurrentWeatherParams, apiToken: string, units: TemperatureUnits) => {
   let params = new HttpParams();
   params = params.append('appid', apiToken);
-  params = params.append('units', 'metric');
+  params = params.append('units', units);
 
   if (typeof value === 'string') {
     params = params.append('q', value);
@@ -57,8 +57,8 @@ export class WeatherForecastService {
   constructor(private readonly http: HttpClient,
               @Inject(WeatherForecastConfigService) private readonly config: WeatherForecastConfig) { }
 
-  getCurrentWeather(value: GetCurrentWeatherParams): Observable<OpenWeatherDto> {
-    const params = buildParams(value, this.config.apiToken);
+  getCurrentWeather(value: GetCurrentWeatherParams, units: TemperatureUnits = 'metric'): Observable<OpenWeatherDto> {
+    const params = buildParams(value, this.config.apiToken, units);
 
     return this.http.get<OpenWeatherDto>(`${this.apiUrl}/weather`, {params})
       .pipe(
@@ -66,8 +66,8 @@ export class WeatherForecastService {
       );
   }
 
-  getDailyForecast(value: GetCurrentWeatherParams): Observable<DailyForecast> {
-    const params = buildParams(value, this.config.apiToken);
+  getDailyForecast(value: GetCurrentWeatherParams, units: TemperatureUnits = 'metric'): Observable<DailyForecast> {
+    const params = buildParams(value, this.config.apiToken, units);
 
     return this.http.get<DailyForecastDto>(`${this.apiUrl}/forecast/daily`, {params})
       .pipe(

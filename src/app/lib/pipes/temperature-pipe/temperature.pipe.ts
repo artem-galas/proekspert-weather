@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
-type unitTypes = 'metric' | 'imperial';
+import { TemperatureUnits } from '~/lib/dto';
 
 @Pipe({
   name: 'temperature',
@@ -8,7 +7,7 @@ type unitTypes = 'metric' | 'imperial';
 })
 export class TemperaturePipe implements PipeTransform {
 
-  transform(value: number, unit: unitTypes = 'metric'): string {
+  transform(value: number, unit: TemperatureUnits = 'metric'): string {
     const unitSymbol = unit === 'metric' ? '°C' : '°F';
 
     return `${Math.round(value)}${unitSymbol}`;

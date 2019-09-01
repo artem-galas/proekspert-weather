@@ -1,9 +1,11 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 import { forkJoin, Observable } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 import { DailyForecast, WeatherForecastService } from '~/lib/services';
-import {OpenWeatherDto} from '~/lib/dto';
+import { OpenWeatherDto, TemperatureUnits } from '~/lib/dto';
 
 @Component({
   selector: 'prw-weather-forecast',
@@ -18,13 +20,38 @@ export class WeatherForecastComponent implements OnInit {
   @Output()
   back = new EventEmitter<void>();
 
+  get units() {
+    return this.tempUnitControl.value ?
+      'imperial' :
+      'metric';
+  }
+
+  tempUnitControl = new FormControl(false);
+
   weather$: Observable<{current: OpenWeatherDto, forecast: DailyForecast}>;
   constructor(private readonly weatherForecastService: WeatherForecastService) { }
 
   ngOnInit() {
+    this.loadWeather();
+    this.valueChanges();
+  }
+
+  loadWeather(units: TemperatureUnits = 'metric') {
     this.weather$ = forkJoin({
-      current: this.weatherForecastService.getCurrentWeather(this.city),
-      forecast: this.weatherForecastService.getDailyForecast(this.city)
+      current: this.weatherForecastService.getCurrentWeather(this.city, units),
+      forecast: this.weatherForecastService.getDailyForecast(this.city, units)
+    });
+  }
+
+  private valueChanges() {
+    this.tempUnitControl
+      .valueChanges
+      .pipe(
+        distinctUntilChanged()
+      ).subscribe((value) => {
+      value ?
+        this.loadWeather('imperial') :
+        this.loadWeather('metric');
     });
   }
 
