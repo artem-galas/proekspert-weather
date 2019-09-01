@@ -1,11 +1,15 @@
-<div class="field-control">
-  <input type="text"
-         placeholder="City"
-         [formControl]="control"
-         [prwAutocomplete]="autocomplete" />
+<div class="page-content">
+  <div class="field-control">
+    <input type="text"
+           placeholder="City"
+           [formControl]="control"
+           [prwAutocomplete]="autocomplete" />
+
+  </div>
   <span class="separator-text">or</span>
   <span>use my <span class="styled-text" (click)="getUserLocation()">current location</span></span>
 </div>
+
 <prw-autocomplete #autocomplete="prwAutocomplete"
                   (optionSelected)="selectCity($event)"
                   [displayWith]="displayWithFn">

@@ -8,6 +8,8 @@ import { WeatherForecastConfigService } from '~/lib/services';
 import { WeatherForecastModule } from './weather-forecast';
 import { CityAutocompleteModule } from './city-autocomplete';
 import { AppComponent } from './app.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -15,7 +17,8 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     WeatherForecastModule,
     CityAutocompleteModule,
-    OverlayModule
+    OverlayModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [
     AppComponent,

@@ -1,27 +1,46 @@
-# ProekspertWeather
+# Proekspert Weather
+Weather forecast
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.1.
+## Technologies 
+1. [Angular](https://angular.io/) + Angular Cli
+2. [OpenWeather Api](https://openweathermap.org)
+3. Karma + Jasmine - testing
+4. [Travis](https://travis-ci.org/) - auto testing and deploy
 
-## Development server
+## Run locally
+1. Be sure you have installed `node 10.16.3`
+2. Install dependencies `npm install`
+3. Run tests `npm test`
+4. Run development server `npm start` - Navigate to `http://localhost:4200/`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Project features
+- Search city with autocomple or use current user position
+- Display weather for current day
+- Display forecast for 6 days
+- Change °C to °F
+- Store user selected city in `LocalStorage`
 
-## Code scaffolding
+## Project Architecture
+All Project are divided on several components:
+- App - base application component
+- CityAutocomplete - represent cities autocomplete
+- WeatherForecast - represent weather information
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Services:
+- CityList - unzip cities form `city.list.json.gz`
+- WeatherForecast - get *current* and *daily forecast* weather
+- WeatherForecastConfig - `InjectionToken` that used for easy configuration `apiToken` for openWeather Api
 
-## Build
+Pipes:
+- WeatherIconPipe - parse weather condition and return necessary icon
+- TemperaturePipe - add `°C` or `°F` to the temperature value
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Common Components:
+- Autocomplete - autocomplete component that can be used in different projects
+  - Option - Simple option autocomplete
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Project dependencies
+- [AngularCDK](https://material.angular.io/cdk/categories) - using for autcomplete
+- [angular-cli-ghpages](https://github.com/angular-schule/angular-cli-ghpages) - deploy application to gh-pages
+- [AngularPWA](https://www.npmjs.com/package/@angular/pwa) - building PWA
+- [WeatherIcons](https://erikflowers.github.io/weather-icons/)

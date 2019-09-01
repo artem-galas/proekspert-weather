@@ -10,7 +10,7 @@ import { CityAutocompleteComponent } from './city-autocomplete.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AutocompleteModule
+    AutocompleteModule,
   ],
   declarations: [
     CityAutocompleteComponent

@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, filter, map, startWith} from 'rxjs/operators';
 
 import {CityListService, WeatherForecastService} from '~/lib/services';
 import { CityDto } from '~/lib/dto';
@@ -29,6 +29,7 @@ export class CityAutocompleteComponent implements OnInit {
     this.cityList$ = this.control
       .valueChanges
       .pipe(
+        filter(value => value.length > 2),
         debounceTime(500),
         distinctUntilChanged(),
         startWith<string | CityDto>(''),

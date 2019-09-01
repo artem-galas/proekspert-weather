@@ -53,7 +53,6 @@
 
     label {
       text-align: left;
-      padding-right: 1.2rem;
       flex: 1 0 50%;
     }
 
@@ -79,6 +78,69 @@
 
     i {
       font-size: 2.5rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    font-size: 2rem;
+    i {
+      font-size: 2rem;
+    }
+  }
+  .weather-today {
+    .title {
+      font-size: 1.5rem;
+    }
+    .sub-title {
+      font-size: 1.2rem;
+    }
+    .weather {
+      flex-direction: column;
+      align-items: stretch;
+
+      .now {
+        display: flex;
+        flex: 1 1 100%;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .today-forecast {
+    .forecast-item {
+      span {
+        text-align: right;
+      }
+    }
+  }
+
+  .weather-week {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .day {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      height: auto;
+      padding: 1rem 0;
+      font-size: 1.2rem;
+
+      label {
+        text-align: left;
+        flex: 1 0 50%;
+      }
+      i {
+        flex: 1 0 auto;
+      }
+      span {
+        text-align: right;
+        flex: 1 0 30%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
     }
   }
 }
