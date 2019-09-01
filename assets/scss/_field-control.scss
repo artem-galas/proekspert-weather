@@ -1,0 +1,16 @@
+.field-control {
+  position: relative;
+
+  input[type="text"] {
+    color: #333;
+    width: 100%;
+    border: 0;
+    padding: 7px 0;
+    border-bottom: 1px solid #ccc;
+    font-size: inherit;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
