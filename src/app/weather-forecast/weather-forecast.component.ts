@@ -1,8 +1,9 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 
 import { DailyForecast, WeatherForecastService } from '~/lib/services';
+import {OpenWeatherDto} from '~/lib/dto';
 
 @Component({
   selector: 'prw-weather-forecast',
@@ -17,11 +18,14 @@ export class WeatherForecastComponent implements OnInit {
   @Output()
   back = new EventEmitter<void>();
 
-  forecast$: Observable<DailyForecast>;
+  weather$: Observable<{current: OpenWeatherDto, forecast: DailyForecast}>;
   constructor(private readonly weatherForecastService: WeatherForecastService) { }
 
   ngOnInit() {
-    this.forecast$ = this.weatherForecastService.getDailyForecast(this.city);
+    this.weather$ = forkJoin({
+      current: this.weatherForecastService.getCurrentWeather(this.city),
+      forecast: this.weatherForecastService.getDailyForecast(this.city)
+    });
   }
 
 }

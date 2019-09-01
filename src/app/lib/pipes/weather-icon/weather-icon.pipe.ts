@@ -17,19 +17,19 @@ export class WeatherIconPipe implements PipeTransform {
   transform(weatherCondition: WeatherConditions | string): string {
     switch (weatherCondition) {
       case 'Clear':
-        return 'wi-day-sunny';
+        return 'wi wi-day-sunny';
       case 'Thunderstorm':
-        return 'wi-thunderstorm';
+        return 'wi wi-thunderstorm';
       case 'Drizzle':
-        return 'wi-hail';
+        return 'wi wi-hail';
       case 'Clouds':
-        return 'wi-cloudy';
+        return 'wi wi-cloudy';
       case 'Rain':
-        return 'wi-rain';
+        return 'wi wi-rain';
       case 'Snow':
-        return 'wi-snow';
+        return 'wi wi-snow';
       default:
-        return 'wi-day-sunny';
+        return 'wi wi-day-sunny';
     }
   }
 

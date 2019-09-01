@@ -33,16 +33,14 @@ const buildParams = (value: GetCurrentWeatherParams, apiToken: string) => {
 };
 
 export class DailyForecast {
-  cityName: string;
-  current: DailyForecastItem;
+  today: DailyForecastItem;
   nextDays: Array<DailyForecastItem>;
 
   constructor(value: DailyForecastDto) {
-    this.cityName = value.city.name;
     this.nextDays = [];
     value.list.map(item => {
       if (new Date(item.dt * 1000).getUTCDate() === new Date().getUTCDate()) {
-        this.current = item;
+        this.today = item;
       } else {
         this.nextDays.push(item);
       }
