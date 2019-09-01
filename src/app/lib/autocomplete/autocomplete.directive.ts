@@ -1,15 +1,42 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewContainerRef
+} from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { ConnectionPositionPair, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { DOWN_ARROW, ENTER, ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
 
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { AutocompleteComponent } from './autocomplete.component';
 
+const AUTOCOMPLETE_OPTION_HEIGHT = 48;
+const AUTOCOMPLETE_PANEL_HEIGHT = 256;
+
+const getOptionScrollPosition = (optionIndex: number, optionHeight: number,
+                                 currentScrollPosition: number, panelHeight: number): number => {
+  const optionOffset = optionIndex * optionHeight;
+
+  if (optionOffset < currentScrollPosition) {
+    return optionOffset;
+  }
+
+  if (optionOffset + optionHeight > currentScrollPosition + panelHeight) {
+    return Math.max(0, optionOffset - panelHeight + optionHeight);
+  }
+
+  return currentScrollPosition;
+};
+
 @Directive({
-  selector: '[prwAutocomplete]'
+  selector: 'input[prwAutocomplete]',
 })
 export class AutocompleteDirective implements OnInit, OnDestroy {
   @Input() prwAutocomplete: AutocompleteComponent;
@@ -52,7 +79,7 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
   openDropdown() {
     this.overlayRef = this.overlay.create({
       width: this.origin.offsetWidth,
-      maxHeight: 40 * 3,
+      maxHeight: AUTOCOMPLETE_PANEL_HEIGHT,
       backdropClass: '',
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
       positionStrategy: this.getOverlayPosition(),
@@ -64,6 +91,39 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
 
     this.overlayRef.backdropClick()
       .subscribe(() => this.close());
+  }
+
+  @HostListener('keydown', ['$event'])
+  private handleKeydown(event: KeyboardEvent) {
+    const keyCode = event.keyCode;
+
+    if (keyCode === ESCAPE) {
+      event.preventDefault();
+    }
+
+    if (event.keyCode === ENTER) {
+      this.setValueAndClose(this.prwAutocomplete._keyManager.activeItem.value);
+    } else if (this.prwAutocomplete) {
+      const prevActiveItem = this.prwAutocomplete._keyManager.activeItem;
+      const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
+
+      this.prwAutocomplete._keyManager.onKeydown(event);
+
+      if (isArrowKey || this.prwAutocomplete._keyManager.activeItem !== prevActiveItem) {
+        this._scrollToOption();
+      }
+    }
+  }
+
+  _scrollToOption(): void {
+    const index = this.prwAutocomplete._keyManager.activeItemIndex || 0;
+    const newScrollPosition = getOptionScrollPosition(
+      index,
+      AUTOCOMPLETE_OPTION_HEIGHT,
+      this.prwAutocomplete._getScrollTop(),
+      AUTOCOMPLETE_PANEL_HEIGHT
+    );
+    this.prwAutocomplete._setScrollTop(newScrollPosition);
   }
 
   private close() {

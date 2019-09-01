@@ -1,19 +1,28 @@
 :host {
-  display: block;
-}
-
-:host.no-result {
-  pointer-events: none;
-}
-
-.option {
-  padding: 10px;
-  font-size: 14px;
+  display: flex;
+  height: 48px;
+  line-height: 48px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 16px;
+  text-align: left;
   cursor: pointer;
-  display: block;
+  position: relative;
+  outline: 0;
+  flex-direction: row;
+  max-width: 100%;
+  box-sizing: border-box;
+  align-items: center;
 
-  &:hover {
-    background-color: lightgrey;
+  &.active, &:hover {
+    background: rgba(0,0,0,.04);
   }
 }
 
+.option-text {
+  display: inline-block;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
