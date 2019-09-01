@@ -15,7 +15,7 @@ export class CityListService {
   constructor(private readonly http: HttpClient) { }
 
   getCities(): Observable<CityDto[]> {
-    return this.http.get('/assets/city.list.json.gz', {
+    return this.http.get('assets/city.list.json.gz', {
       responseType: 'arraybuffer',
     })
       .pipe(
