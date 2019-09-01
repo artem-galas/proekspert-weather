@@ -1,0 +1,104 @@
+{
+  "configVersion": 1,
+  "timestamp": 1567368897455,
+  "index": "/proekspert-weather/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/proekspert-weather/favicon.ico",
+        "/proekspert-weather/index.html",
+        "/proekspert-weather/main-es2015.11efdb1af6f10e76afe2.js",
+        "/proekspert-weather/main-es5.11efdb1af6f10e76afe2.js",
+        "/proekspert-weather/manifest.webmanifest",
+        "/proekspert-weather/polyfills-es2015.fd917e7c3ed57f282ee5.js",
+        "/proekspert-weather/polyfills-es5.f9fad3ad3c84e6dbdd72.js",
+        "/proekspert-weather/runtime-es2015.24b02acc1f369d9b9f37.js",
+        "/proekspert-weather/runtime-es5.24b02acc1f369d9b9f37.js",
+        "/proekspert-weather/styles.c1ccb1fa7ac7d36db67d.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/proekspert-weather/assets/city.list.json.gz",
+        "/proekspert-weather/assets/font/weathericons-regular-webfont.eot",
+        "/proekspert-weather/assets/font/weathericons-regular-webfont.svg",
+        "/proekspert-weather/assets/font/weathericons-regular-webfont.ttf",
+        "/proekspert-weather/assets/font/weathericons-regular-webfont.woff",
+        "/proekspert-weather/assets/font/weathericons-regular-webfont.woff2",
+        "/proekspert-weather/assets/icons/icon-128x128.png",
+        "/proekspert-weather/assets/icons/icon-144x144.png",
+        "/proekspert-weather/assets/icons/icon-152x152.png",
+        "/proekspert-weather/assets/icons/icon-192x192.png",
+        "/proekspert-weather/assets/icons/icon-384x384.png",
+        "/proekspert-weather/assets/icons/icon-512x512.png",
+        "/proekspert-weather/assets/icons/icon-72x72.png",
+        "/proekspert-weather/assets/icons/icon-96x96.png",
+        "/proekspert-weather/assets/styles/weather-icons.min.css",
+        "/proekspert-weather/weathericons-regular-webfont.1cd48d78f06d33973d9d.woff2",
+        "/proekspert-weather/weathericons-regular-webfont.4618f0de2a818e7ad3fe.ttf",
+        "/proekspert-weather/weathericons-regular-webfont.4b658767da6bd92ce2ad.eot",
+        "/proekspert-weather/weathericons-regular-webfont.8cac70ebda3f23ce4721.woff",
+        "/proekspert-weather/weathericons-regular-webfont.ecaf8b481729b18f6a84.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/proekspert-weather/assets/city.list.json.gz": "dfee4c46c2e522539132bda147ae43c7bd2e73d9",
+    "/proekspert-weather/assets/font/weathericons-regular-webfont.eot": "5d58a11d6de39f76e43a93fb1ef70e7bd78032a2",
+    "/proekspert-weather/assets/font/weathericons-regular-webfont.svg": "c3b440c8a72eb2816bc6c52fb3d6bbf878b6fe23",
+    "/proekspert-weather/assets/font/weathericons-regular-webfont.ttf": "9916e3dbc3990e3073cf5a2cb4c2e958273b7532",
+    "/proekspert-weather/assets/font/weathericons-regular-webfont.woff": "5b909f99b700b5289e9af6f750405152b06e32f2",
+    "/proekspert-weather/assets/font/weathericons-regular-webfont.woff2": "718dd740e8340888352129e592fed085409e891e",
+    "/proekspert-weather/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/proekspert-weather/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/proekspert-weather/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/proekspert-weather/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/proekspert-weather/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/proekspert-weather/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/proekspert-weather/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/proekspert-weather/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/proekspert-weather/assets/styles/weather-icons.min.css": "5074c62af1eeee7856601dad03b91900c8cf5244",
+    "/proekspert-weather/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/proekspert-weather/index.html": "1c20a7580f47c83b08c0c0677ad95043618cd593",
+    "/proekspert-weather/main-es2015.11efdb1af6f10e76afe2.js": "69918061363240be038d5de68aad2cd822cc775e",
+    "/proekspert-weather/main-es5.11efdb1af6f10e76afe2.js": "6c071f96097edbd6b5ba00f18db6eba42433d12e",
+    "/proekspert-weather/manifest.webmanifest": "4de4c1d4b7951fcd902636bd66f1f470a0fdd693",
+    "/proekspert-weather/polyfills-es2015.fd917e7c3ed57f282ee5.js": "e2f28c3743afd2899e140ad831df9675c233c02b",
+    "/proekspert-weather/polyfills-es5.f9fad3ad3c84e6dbdd72.js": "9ab1ff82f0d4de8ea99a7c18fa536116b571683e",
+    "/proekspert-weather/runtime-es2015.24b02acc1f369d9b9f37.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/proekspert-weather/runtime-es5.24b02acc1f369d9b9f37.js": "672197515af830a58c90096af737113c2b45b674",
+    "/proekspert-weather/styles.c1ccb1fa7ac7d36db67d.css": "8603ad98631c0ae8cb2dd3fc159947f5c25817b7",
+    "/proekspert-weather/weathericons-regular-webfont.1cd48d78f06d33973d9d.woff2": "718dd740e8340888352129e592fed085409e891e",
+    "/proekspert-weather/weathericons-regular-webfont.4618f0de2a818e7ad3fe.ttf": "9916e3dbc3990e3073cf5a2cb4c2e958273b7532",
+    "/proekspert-weather/weathericons-regular-webfont.4b658767da6bd92ce2ad.eot": "5d58a11d6de39f76e43a93fb1ef70e7bd78032a2",
+    "/proekspert-weather/weathericons-regular-webfont.8cac70ebda3f23ce4721.woff": "5b909f99b700b5289e9af6f750405152b06e32f2",
+    "/proekspert-weather/weathericons-regular-webfont.ecaf8b481729b18f6a84.svg": "c3b440c8a72eb2816bc6c52fb3d6bbf878b6fe23"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
