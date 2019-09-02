@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1567373765381,
+  "timestamp": 1567408922629,
   "index": "/proekspert-weather/index.html",
   "assetGroups": [
     {
@@ -79,7 +79,7 @@
     "/proekspert-weather/index.html": "ebb85f0b85475d3c079f796fb4dd09bd2e2cef64",
     "/proekspert-weather/main-es2015.336d3518b6c165ba239d.js": "14c838892ecbb87bd798772647849ddb9f1830fb",
     "/proekspert-weather/main-es5.336d3518b6c165ba239d.js": "d437dfa0d4f761871d6e5068bdbdcebca8d63a28",
-    "/proekspert-weather/manifest.webmanifest": "4de4c1d4b7951fcd902636bd66f1f470a0fdd693",
+    "/proekspert-weather/manifest.webmanifest": "ba59ab9aa6cb1daa6ecaefc6146be808b9453708",
     "/proekspert-weather/polyfills-es2015.fd917e7c3ed57f282ee5.js": "e2f28c3743afd2899e140ad831df9675c233c02b",
     "/proekspert-weather/polyfills-es5.f9fad3ad3c84e6dbdd72.js": "9ab1ff82f0d4de8ea99a7c18fa536116b571683e",
     "/proekspert-weather/runtime-es2015.24b02acc1f369d9b9f37.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",

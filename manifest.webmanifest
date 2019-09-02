@@ -5,7 +5,7 @@
   "background_color": "#fd736c",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/proekspert-weather",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
