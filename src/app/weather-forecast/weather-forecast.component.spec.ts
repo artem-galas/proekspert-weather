@@ -1,14 +1,38 @@
-import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import {of} from 'rxjs';
+import { of } from 'rxjs';
 
 import { openWeatherResponseMock } from '~/lib/services/weather-forecast.service.spec';
+
 import { DailyForecast, WeatherForecastService } from '~/lib/services';
 import {TemperaturePipeModule, WeatherIconModule} from '~/lib/pipes';
 
 import { WeatherForecastComponent } from './weather-forecast.component';
-import {ReactiveFormsModule} from "@angular/forms";
+
+const listItem = {
+  dt: 1567410982,
+  temp: {
+    day: 21,
+    eve: 21,
+    max: 21,
+    min: 13.92,
+    morn: 21,
+    night: 13.92,
+  },
+  pressure: 1015.29,
+  humidity: 60,
+  deg: 165,
+  speed: 1.85,
+  clouds: 98,
+  weather: [{
+    description: 'overcast clouds',
+    icon: '04d',
+    id: 804,
+    main: 'Clouds',
+  }]
+};
+
 
 const dailyForecastMock = new DailyForecast({
   city: {
@@ -18,43 +42,30 @@ const dailyForecastMock = new DailyForecast({
     },
     name: 'City',
   },
-  list: [{
-    dt: 1567332000,
-    temp: {
-      day: 21,
-      eve: 21,
-      max: 21,
-      min: 13.92,
-      morn: 21,
-      night: 13.92,
+  list: [
+    {
+      ...listItem,
     },
-    pressure: 1015.29,
-    humidity: 60,
-    deg: 165,
-    speed: 1.85,
-    clouds: 98,
-    weather: [{
-      description: 'overcast clouds',
-      icon: '04d',
-      id: 804,
-      main: 'Clouds',
-    }]
-  }]
+    {
+      ...listItem,
+      dt: 1567504800
+    }
+  ]
 });
 
 describe('WeatherForecastComponent', () => {
-  let testHostComponent: TestHostComponent;
-  let testHostFixture: ComponentFixture<TestHostComponent>;
   let component: WeatherForecastComponent;
+  let fixture: ComponentFixture<WeatherForecastComponent>;
+  let weatherForecastSpy;
 
   beforeEach(async(() => {
-    const weatherForecast = jasmine.createSpyObj('WeatherForecastService', [
+    weatherForecastSpy = jasmine.createSpyObj('WeatherForecastService', [
       'getCurrentWeather',
       'getDailyForecast'
     ]);
-    weatherForecast.getCurrentWeather
+    weatherForecastSpy.getCurrentWeather
       .and.returnValue(of(openWeatherResponseMock));
-    weatherForecast.getDailyForecast
+    weatherForecastSpy.getDailyForecast
       .and.returnValue(of(dailyForecastMock));
 
     TestBed.configureTestingModule({
@@ -64,12 +75,11 @@ describe('WeatherForecastComponent', () => {
         TemperaturePipeModule
       ],
       declarations: [
-        TestHostComponent,
         WeatherForecastComponent
       ],
       providers: [
         {
-          provide: WeatherForecastService, useValue: weatherForecast
+          provide: WeatherForecastService, useValue: weatherForecastSpy
         }
       ]
     })
@@ -77,9 +87,9 @@ describe('WeatherForecastComponent', () => {
   }));
 
   beforeEach(() => {
-    testHostFixture = TestBed.createComponent(TestHostComponent);
-    testHostComponent = testHostFixture.componentInstance;
-    component = testHostComponent.testingComponent;
+    fixture = TestBed.createComponent(WeatherForecastComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -87,12 +97,24 @@ describe('WeatherForecastComponent', () => {
       .toBeTruthy();
   });
 
-  @Component({
-    selector: 'prw-host-component',
-    template: `<prw-weather-forecast></prw-weather-forecast>`
-  })
-  class TestHostComponent {
-    @ViewChild(WeatherForecastComponent, {static: true})
-    public testingComponent: WeatherForecastComponent;
-  }
+  describe('Should display', () => {
+    it('weather-today', () => {
+      const weatherNow = document.querySelector('.weather-today .now');
+      const temp = weatherNow.querySelector('span');
+
+      expect(temp.innerText)
+        .toBe('19°C');
+    });
+
+    it('weather-week', () => {
+      const weatherWeek = document.querySelector('.weather-week');
+      const days = weatherWeek.querySelectorAll('.day');
+      const date = days[0].querySelector('label');
+
+      expect(days.length)
+        .toBe(1);
+      expect(date.innerText)
+        .toBe('Tuesday');
+    });
+  });
 });

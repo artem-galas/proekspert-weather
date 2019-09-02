@@ -8,24 +8,24 @@ import { OpenWeatherDto } from '~/lib/dto';
 
 export const openWeatherResponseMock: OpenWeatherDto = {
   coord: {
-    lon: -0.13,
-    lat: 51.51
+    lat: 58.38,
+    lon: 26.73
   },
   weather: [
     {
-      id: 300,
-      main: 'Drizzle',
-      description: 'light intensity drizzle',
-      icon: '09d'
+      description: 'clear sky',
+      icon: '01d',
+      id: 800,
+      main: 'Clear',
     }
   ],
   base: 'stations',
   main: {
-    temp: 280.32,
+    humidity: 82,
     pressure: 1012,
-    humidity: 81,
-    temp_min: 279.15,
-    temp_max: 281.15
+    temp: 18.74,
+    temp_max: 20.56,
+    temp_min: 17,
   },
   visibility: 10000,
   wind: {
@@ -35,17 +35,17 @@ export const openWeatherResponseMock: OpenWeatherDto = {
   clouds: {
     all: 90
   },
-  dt: 1485789600,
+  dt: 1567410982,
   sys: {
-    type: 1,
-    id: 5091,
-    message: 0.0103,
-    country: 'GB',
-    sunrise: 1485762037,
-    sunset: 1485794875
+    country: 'EE',
+    id: 1335,
+    message: 0.0062,
+    sunrise: 1567394007,
+    sunset: 1567444371,
+    type: 1
   },
-  id: 2643743,
-  name: 'London',
+  id: 1,
+  name: 'City',
   cod: 200
 };
 
