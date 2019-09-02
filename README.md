@@ -1,5 +1,12 @@
-# Proekspert Weather
-Weather forecast
+# Proekspert Weather 
+
+[![Build Status](https://travis-ci.org/artem-galas/proekspert-weather.svg?branch=master)](https://travis-ci.org/artem-galas/proekspert-weather)
+
+<div style="text-align: center">
+    <a href="doc/application.jpg" target="_blank">
+       <img alt="application" src="doc/application.jpg">
+    </a>
+</div>
 
 ## Technologies 
 1. [Angular](https://angular.io/) + Angular Cli
