@@ -34,24 +34,17 @@ const listItem = {
 };
 
 
-const dailyForecastMock = new DailyForecast({
-  city: {
-    coord: {
-      lat: 1,
-      lon: 1
-    },
-    name: 'City',
-  },
-  list: [
+const dailyForecastMock: DailyForecast = {
+  nextDays: [
     {
       ...listItem,
     },
-    {
-      ...listItem,
-      dt: 1567504800
-    }
-  ]
-});
+  ],
+  today: {
+    ...listItem,
+    dt: 1567504800
+  }
+};
 
 describe('WeatherForecastComponent', () => {
   let component: WeatherForecastComponent;
@@ -114,7 +107,7 @@ describe('WeatherForecastComponent', () => {
       expect(days.length)
         .toBe(1);
       expect(date.innerText)
-        .toBe('Tuesday');
+        .toBe('Monday');
     });
   });
 });
